@@ -193,7 +193,8 @@ $(function() {
 ```
 
 ## 使用したパッケージなど
-- [jquery](https://github.com/jquery/jquery)
+- [jquery](https://jquery.com/)
 - [fullcalendar](https://github.com/arshaw/fullcalendar)
 - [plainModal](https://github.com/anseki/jquery-plainmodal)
 - [GoogleCalenderAPI](https://developers.google.com/google-apps/calendar/)
+- [Bootstrap](http://getbootstrap.com/)
