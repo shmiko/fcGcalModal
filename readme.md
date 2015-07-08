@@ -67,7 +67,6 @@ $ npm install
 
 - 登録形式 [eventId]-[イベント名]
 - 例：event001-イベント名
-// - 一覧表 [Googleスプレッドシート](https://docs.google.com/spreadsheets/d/1HnCT_2J4dSZiyb69IfqqUTzejD4DXK4jM-ipyiD200I/edit#gid=0)
 
 ### 3. [fullcalendar](http://fullcalendar.io/)の設定
 
@@ -193,3 +192,8 @@ $(function() {
 });
 ```
 
+## 使用したパッケージなど
+- [jquery](https://github.com/jquery/jquery)
+- [fullcalendar](https://github.com/arshaw/fullcalendar)
+- [plainModal](https://github.com/anseki/jquery-plainmodal)
+- [GoogleCalenderAPI](https://developers.google.com/google-apps/calendar/)
