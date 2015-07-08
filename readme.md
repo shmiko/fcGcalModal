@@ -10,48 +10,6 @@ jQueryプラグイン：[fullcalendar](http://fullcalendar.io/)で、[GoogleCale
 $ git clone git@github.com:kozaru/fcGcalModal.git
 ```
 
-#### event情報 （json形式）
-
-```eventlist.js
-var eventlist = {
-	"event001":{
-		"title": "イベント１",
-		"discription": "イベント１の説明文です"
-	},
-	"event002":{
-		"title": "イベント２",
-		"discription": "イベント２の説明文です"
-	}
-};
-```
-
-#### fullcalendar.js で時間表示を消す（`line 2905`）
-オプションが見つけられなかったのです。あれば変更したいです。
-
-```fullcalendar.js
-// 時間表示を消す（以下をコメントアウト）
-// displayEventTime = view.opt('displayEventTime');
-// if (displayEventTime == null) {
-// 	displayEventTime = this.computeDisplayEventTime(); // might be based off of range
-// }
-```
-
-#### gcal.jsで表示する内容を変更 (`line 149`)
-
-```gcal.js
-events.push({
-	id: entry.id,
-	// タイトル
-	title: eventlist[entry.summary.substr(0,8)].title, //entry.summary,
-	start: entry.start.dateTime || entry.start.date,
-	end: entry.end.dateTime || entry.end.date,
-	// URL
-	url: '#' + entry.summary.substr(0,8),//url,
-	location: entry.location,
-	description: entry.description
-});
-```
-
 ### 2. 必要なパッケージをインストール
 
 ```
@@ -62,6 +20,8 @@ $ npm install
 ## fullcalendar + GoogleCalendar
 
 ### 1. [Google Calendar API](https://console.developers.google.com/flows/enableapi?apiid=calendar)取得
+
+API KEYに登録したURLのみで、GoogleCalendarのデータを取得するので、テスト環境のURLを設定しておく
 
 ### 2. Google Calendar 登録
 
@@ -106,15 +66,18 @@ $(function() {
   // Google Calendar埋め込み
 　var gCalApiKey = '[GoogleカレンダーAPIKey]',
 　gCalId = '[GoogleカレンダーID]';
-		
+
   // fullcalendarの設定
   $('#calendar').fullCalendar({
+  　// Google Calendarの設定
     googleCalendarApiKey: gCalApiKey,
     eventSources: [
       {
           googleCalendarId: gCalId
       }
     ],
+    // 省略
+    // カレンダーHeaderの設定
     header: {
 	    left:   '',
 	    center: 'title',
@@ -122,6 +85,7 @@ $(function() {
     },
     // 表示したい曜日を設定 (水・土）
     hiddenDays: [ 0,1,2,4,5 ],
+    // 1ヶ月のみ表示
     views: {
       oneMonth: {
         type: 'basic',
@@ -129,12 +93,15 @@ $(function() {
       }
     },
     defaultView: 'oneMonth',
+    // 日本語
     lang: 'ja'
   });
 });
 ```
 
 ## [plainModal](http://anseki.github.io/jquery-plainmodal/)を設定
+- [fullcalenderのeventClick](http://fullcalendar.io/docs/mouse/eventClick/)
+- [fullcalenderのventAfterAllRender](http://fullcalendar.io/docs/event_rendering/eventAfterRender/)
 
 ```custom.js
 $(function() {
@@ -160,7 +127,7 @@ $(function() {
       });
     }
   };
-  
+
   // Modalウインドウ用のHTML
   var eventHtml01 = '<div id="',
     eventHtml02 = '" class="modal-content"><div class="modal-header"><div class="plainmodal-close pull-right">&#215;</div><h4 class="modal-title">',
@@ -168,7 +135,7 @@ $(function() {
     eventHtml04 = '</p></div><div class="modal-footer"><button class="plainmodal-close btn">Close</button></div></div>',
 
     eventHtml;
-    
+
   $('#calendar').fullCalendar({
 	//省略
 		// eventをクリックしたときの設定
@@ -189,6 +156,50 @@ $(function() {
 		},
 	//省略
 	});
+});
+```
+
+## カスタマイズした内容
+
+#### event情報 （json形式）
+
+```eventlist.js
+var eventlist = {
+	"event001":{
+		"title": "イベント１",
+		"discription": "イベント１の説明文です"
+	},
+	"event002":{
+		"title": "イベント２",
+		"discription": "イベント２の説明文です"
+	}
+};
+```
+
+#### fullcalendar.js で時間表示を消す（`line 2905`）
+オプションが見つけられなかったのです。あれば変更したいです。
+
+```fullcalendar.js
+// 時間表示を消す（以下をコメントアウト）
+// displayEventTime = view.opt('displayEventTime');
+// if (displayEventTime == null) {
+// 	displayEventTime = this.computeDisplayEventTime(); // might be based off of range
+// }
+```
+
+#### gcal.jsで表示する内容を変更 (`line 149`)
+
+```gcal.js
+events.push({
+	id: entry.id,
+	// タイトル
+	title: eventlist[entry.summary.substr(0,8)].title, //entry.summary,
+	start: entry.start.dateTime || entry.start.date,
+	end: entry.end.dateTime || entry.end.date,
+	// URL
+	url: '#' + entry.summary.substr(0,8),//url,
+	location: entry.location,
+	description: entry.description
 });
 ```
 

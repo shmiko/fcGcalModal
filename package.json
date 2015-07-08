@@ -1,18 +1,17 @@
 {
-  "name": "fullcalender",
+  "name": "fcGcalModal",
   "version": "1.0.0",
-  "description": "## テスト1：とりあえず動かす",
-  "main": "custom.js",
+  "description": "fullcalendar + GoogleCalendarAPI + plainModal",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "kozaru",
+  "license": "MIT",
   "devDependencies": {
     "bootstrap": "^3.3.5",
     "fullcalendar": "^2.3.1",
     "jquery": "^1.11.3",
-    "jquery-plainmodal": "file:jquery-plainmodal",
+    "jquery-plainmodal": "^0.14.5",
     "moment": "^2.10.3"
   }
 }
